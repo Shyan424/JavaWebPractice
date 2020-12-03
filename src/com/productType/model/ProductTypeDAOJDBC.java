@@ -3,6 +3,7 @@ package com.productType.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,10 +23,9 @@ public class ProductTypeDAOJDBC implements ProductTypeInterface{
 	public static void main(String[] args) {
 		ProductTypeVO pvo = new ProductTypeVO();
 		ProductTypeInterface pt = new ProductTypeDAOJDBC();
-		pvo.setPt_platform("PlayStationn");
+		pvo.setPt_platform("PlaaayStationn");
 		pvo.setPt_kind("sssssssssssssssssss");
 		pt.insert(pvo);
-		System.out.println(pvo);
 	}
 	
 	@Override
@@ -41,7 +41,8 @@ public class ProductTypeDAOJDBC implements ProductTypeInterface{
 			ps.setString(1, productType.getPt_platform());
 			ps.setString(2, productType.getPt_kind());
 			
-			ps.executeQuery();
+			int line = ps.executeUpdate();
+			System.out.println(line);
 			
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
@@ -67,7 +68,42 @@ public class ProductTypeDAOJDBC implements ProductTypeInterface{
 
 	@Override
 	public void update(ProductTypeVO productType) {
-		// TODO Auto-generated method stub
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			Class.forName(database.DRIVER);
+			con = DriverManager.getConnection(database.URL, database.USER, database.PASSWORD);
+			ps = con.prepareStatement(UPDATE);
+			
+			ps.setString(1, productType.getPt_platform());
+			ps.setString(2, productType.getPt_kind());
+			ps.setString(3, productType.getPt_id());
+			
+			ps.executeUpdate();
+			
+			
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) {
+					ps.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
