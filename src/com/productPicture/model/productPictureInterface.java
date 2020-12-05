@@ -2,11 +2,11 @@ package com.productPicture.model;
 
 import java.util.List;
 
-public interface productPictureInterface {
+public interface ProductPictureInterface {
 
-	public boolean insert(ProductPictureVO productPicture);
-	public boolean update(ProductPictureVO productPicture);
-	public boolean delete(String pp_id);
+	public void insert(ProductPictureVO productPicture);
+	public void update(ProductPictureVO productPicture);
+	public void delete(String pp_id);
 	public ProductPictureVO findByPrimaryKey(String pp_id);
-	public List<ProductPictureVO> gatAll();
+	public List<ProductPictureVO> getAll();
 }
