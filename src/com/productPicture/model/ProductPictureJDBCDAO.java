@@ -1,12 +1,8 @@
 package com.productPicture.model;
 
-import java.awt.Image;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,11 +11,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 import com.data.database;
 
-public class ProductPictureJDBCDAO implements ProductPictureInterface{
+public class ProductPictureJDBCDAO implements ProductPictureDAOInterface{
 
 
 	
@@ -31,44 +25,73 @@ public class ProductPictureJDBCDAO implements ProductPictureInterface{
 	
 	
 	public static void main(String[] args) {
-		ProductPictureInterface pt = new ProductPictureJDBCDAO();
+		ProductPictureDAOInterface pt = new ProductPictureJDBCDAO();
 //		// 新增
-		ProductPictureVO ppVOInsert = new ProductPictureVO();
-		ppVOInsert.setPp_picture(null);
-		ppVOInsert.setP_id("P00013");
-		pt.insert(ppVOInsert);
+		byte[] b = null;
+//		
+//		ProductPictureVO ppVOInsert = new ProductPictureVO();
+//		
+//		try {
+//			File f = new File("I:\\Users\\user\\Google 雲端硬碟\\Pictures\\0a85978e19fcb6c8319c52ca9434fa8f.JPG");
+//			FileInputStream fis = new FileInputStream(f);
+//			b = new byte[fis.available()];
+//			fis.read(b);
+//			ppVOInsert.setPp_picture(b);
+//			ppVOInsert.setP_id("P00013");
+//			pt.insert(ppVOInsert);
+//			fis.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
 		
 		
 		// 更新
 //		ProductPictureVO ppVOUpdate = new ProductPictureVO();
-//		ppVOUpdate.setPP_ID("PT00012");
-//		ppVOUpdate.setPt_platform("PlayStationn");
-//		ppVOUpdate.setPt_kind("主機");
-//		pt.update(ppVOUpdate);
-		
+//		try {
+//			File f = new File("I:\\Users\\user\\Google 雲端硬碟\\Pictures\\301e58afcaec5a391ba659c8c1275382.gif");
+//			FileInputStream fis = new FileInputStream(f);
+//			b = new byte[fis.available()];
+//			fis.read(b);
+//			ppVOUpdate.setPp_picture(b);
+//			ppVOUpdate.setPp_id("PP00008");
+//			pt.update(ppVOUpdate);
+//			fis.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		// 刪除
-//		pt.delete("PT00021");
+//		pt.delete("PP00003");
 		
 		
 //		// 取一
-//		ProductPictureVO ppVOGetOne = pt.findByPrimaryKey("PP00007");
+//		ProductPictureVO ppVOGetOne = pt.findByPrimaryKey("PP00008");
 //		String id = ppVOGetOne.getPp_id();
-//		byte[] img = ppVOGetOne.getPp_picture();
 //		String pid = ppVOGetOne.getP_id();
+//		File f = null;
+//		try {
+//			f  = new File("xxx.gif");
+//			FileOutputStream fos = new FileOutputStream(f);
+//			
+//			byte[] img = ppVOGetOne.getPp_picture();
+//			fos.write(img);
+//			fos.close();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 //		
-//		System.out.println("id:" + id);
-//		System.out.println("file path" + img1.getAbsolutePath());
-//		System.out.println("kind:" + pid);
-//		
+//		System.out.println("id: " + id);
+//		System.out.println("where is img: " + f.getAbsolutePath());
+//		System.out.println("kind: " + pid);
+		
 //		// 取全部
 //		List<ProductPictureVO> list = pt.getAll();
 //		for(ProductPictureVO ppVO : list) {
-//			String id = ppVO.getPP_ID();
-//			String platform = ppVO.getPt_platform();
-//			String kind = ppVO.getPt_kind();
+//			String id = ppVO.getPp_id();
+////			byte[] img = ppVO.getPp_picture();
+//			String pid = ppVO.getP_id();
 //			System.out.println("id:" + id);
-//			System.out.println("platform:" + platform);
-//			System.out.println("kind:" + kind);
+//			System.out.println("pid:" + pid);
 //			System.out.println("===============================");
 //		}
 		
@@ -164,9 +187,9 @@ public class ProductPictureJDBCDAO implements ProductPictureInterface{
 			
 			ps.setString(1, pp_id);
 			
-			ps.executeUpdate();
+			int d = ps.executeUpdate();
 			
-			
+			System.out.println(d);
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch(SQLException e) {

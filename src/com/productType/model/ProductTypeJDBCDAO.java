@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.data.database;
 
-public class ProductTypeJDBCDAO implements ProductTypeInterface{
+public class ProductTypeJDBCDAO implements ProductTypeDAOInterface{
 
 
 	
@@ -22,7 +22,7 @@ public class ProductTypeJDBCDAO implements ProductTypeInterface{
 	
 	
 	public static void main(String[] args) {
-		ProductTypeInterface pt = new ProductTypeJDBCDAO();
+		ProductTypeDAOInterface pt = new ProductTypeJDBCDAO();
 //		// ·s¼W
 //		ProductTypeVO ptvoInsert = new ProductTypeVO();
 //		ptvoInsert.setPt_platform("PlaaayStationn");

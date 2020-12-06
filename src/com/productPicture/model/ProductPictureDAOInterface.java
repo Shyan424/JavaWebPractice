@@ -2,7 +2,7 @@ package com.productPicture.model;
 
 import java.util.List;
 
-public interface ProductPictureInterface {
+public interface ProductPictureDAOInterface {
 
 	public void insert(ProductPictureVO productPicture);
 	public void update(ProductPictureVO productPicture);

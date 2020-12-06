@@ -2,7 +2,7 @@ package com.productType.model;
 
 import java.util.List;
 
-public interface ProductTypeInterface {
+public interface ProductTypeDAOInterface {
 
 	public void insert(ProductTypeVO productType);
 	public void update(ProductTypeVO productType);
